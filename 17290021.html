@@ -1,0 +1,60 @@
+<html>
+<body> 
+ <p>USE ARROWS TO MOVE THE LETTERS.</p>
+   <canvas id="glcanvas" width="680" height="680"></canvas>
+   <button id = "ColourButton"> 
+		Colour
+	</button>
+	
+	<select id="mymenu" size="6">
+		<option value="0">red</option>
+		<option value="1">green</option>
+		<option value="2">blue</option>
+		<option value="3">yellow</option>
+		<option value="4">purple</option>
+		<option value="5">orange</option>
+	</select>
+
+	<button id = "rotate"> 
+		Rotation and Scaling
+	</button>
+	<select id="mymenu1" size="4">
+		<option value="0">turnright</option>
+		<option value="1">turnleft</option>
+		<option value="2">big</option>
+		<option value="3">small</option>
+	
+	</select>
+
+	
+</body>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+   attribute vec4 vPosition;
+   uniform float theta;
+   uniform float translate1;
+   uniform float translate2;
+   uniform float scale;
+   
+   void main(){ 	
+	gl_Position.x = ((((cos(theta) * vPosition.x - sin(theta) * vPosition.y))+translate1)*scale);
+	gl_Position.y = (((sin(theta) * vPosition.x +cos(theta) * vPosition.y)+translate2)*scale);
+	gl_Position.z = 0.0;
+	gl_Position.w = 1.0;
+   }
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment"> 
+   precision mediump float; 
+   uniform vec4 vColor;
+   void main() {
+      gl_FragColor = vColor;
+   }
+</script>
+
+<script src="initShaders.js"></script>
+<script src="MV.js"></script>
+<script src="17290021.js"></script>
+</script>
+
+</html>
